@@ -8,13 +8,6 @@ class CameraManager {
   }
   setCameraRef(ref: any) {
     this.cameraRef = ref;
-    if (this.cameraRef) {
-      // Exact BMRS-FE initial camera values
-      this.cameraRef.minDistance = 0.05;
-      this.cameraRef.maxDistance = 1.5;
-      // Default look-at position from BMRS-FE CameraManager.focusCameraTo()
-      this.cameraRef.setLookAt(0, 0.25, 1.5, 0, 0, 0, false);
-    }
   }
 }
 

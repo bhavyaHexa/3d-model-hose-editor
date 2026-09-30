@@ -36,7 +36,12 @@ export const cameraHoseView = (
   // 4. Clamp to reasonable limits
   const finalDistance = Math.max(d, 0.05);
 
-  // 5. Position camera along +Z from hose center looking at center
+  // 5. Lock zoom BEFORE setLookAt so limits are enforced immediately
+  //    At 0.9x distance the hose still fits within the screen horizontally
+  cameraControls.maxDistance = finalDistance;
+  cameraControls.minDistance = finalDistance * 0.9;
+
+  // 6. Position camera along +Z from hose center looking at center
   cameraControls.setLookAt(
     center.x,
     center.y,
@@ -47,7 +52,7 @@ export const cameraHoseView = (
     false, // no transition — instant snap
   );
 
-  // 6. Lock zoom: default view is max zoom-out; allow 50% zoom-in
+  // 7. Re-apply limits after setLookAt to override any internal reset
   cameraControls.maxDistance = finalDistance;
-  cameraControls.minDistance = finalDistance * 0.5;
+  cameraControls.minDistance = finalDistance * 0.9;
 };
