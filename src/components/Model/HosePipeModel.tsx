@@ -4,9 +4,9 @@ import { observer } from 'mobx-react-lite';
 import React, { Suspense, useEffect } from 'react';
 import * as THREE from 'three';
 
-import { useMainContext } from '../../hooks/useMainContext';
-import { hosePipeBoundingBox } from '../../utils/hosePipeBoundingBox';
-import { cameraBoundingBox } from '../../utils/cameraBoundingBox';
+import { useMainContext } from "../../hooks/useMainContext";
+import { hosePipeBoundingBox } from "../../utils/hosePipeBoundingBox";
+import { cameraHoseView } from "../../utils/cameraHoseView";
 
 const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
   const gltf = useGLTF(url);
@@ -23,13 +23,10 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
         hosePipe3DManager.setBounds(res.minX, res.maxX);
       }
 
-      // Fit camera to model using exact BMRS-FE pattern
+      // Normalize camera view: hose always fills 80% of screen width
       const cameraControls = cameraManager.cameraRef;
       if (cameraControls) {
-        const camRes = cameraBoundingBox(scene);
-        if (camRes) {
-          camRes.applyToCamera(cameraControls, true, false);
-        }
+        cameraHoseView(scene, cameraControls, 0.8);
       }
 
       scene.traverse((child) => {

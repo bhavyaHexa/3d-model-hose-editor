@@ -64,7 +64,7 @@ body {
   margin: 0 0 10px 0;
 }
 
-/* Form Controls */
+/* Form Controls - kept for legacy compatibility */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -86,11 +86,92 @@ body {
   color: #333;
   outline: none;
   cursor: pointer;
-  appearance: auto;
 }
 
-.form-group select:focus {
+/* Static Info Block */
+.info-block {
+  background: #eef4ff;
+  border: 1px solid #c5d8f8;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.series-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a3a6e;
+  line-height: 1.4;
+}
+
+.size-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.size-label span {
+  color: #0b57d0;
+  font-weight: 700;
+}
+
+/* Braid Section */
+.braid-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.braid-section-label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.sidebar-loading {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Braid Cards */
+.braid-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.braid-card {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  background: #fff;
+  border: 1.5px solid #e1e4e8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.braid-card:hover {
   border-color: #0b57d0;
+  color: #0b57d0;
+  background: #f0f6ff;
+}
+
+.braid-card.active {
+  border-color: #0b57d0;
+  color: #0b57d0;
+  background: #e8f0fe;
+  font-weight: 700;
 }
 
 /* Main Area */
