@@ -15,11 +15,7 @@
                             "value": "06",
                             "modelURL": "/models/hoses/PROGold/SS/06/06.glb"
                         },
-                        {
-                            "id": 2,
-                            "value": "08",
-                            "modelURL": "/models/hoses/PROGold/SS/08.glb"
-                        },
+                    
                         {
                             "id": 3,
                             "value": "10",
