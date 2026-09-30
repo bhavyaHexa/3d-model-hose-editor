@@ -2,7 +2,6 @@ import { MainContextProvider } from './hooks/useMainContext'
 import { Viewer3D } from './components/Viewer3D/Viewer3D'
 import { Header } from './components/UI/Header'
 import { Sidebar } from './components/UI/Sidebar'
-import { FloatingTitle } from './components/UI/FloatingTitle'
 import './App.css'
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
         <div className="body-container">
           <Sidebar />
           <div className="main-area bg-blueprint-grid">
-            <FloatingTitle />
             <Viewer3D />
           </div>
         </div>

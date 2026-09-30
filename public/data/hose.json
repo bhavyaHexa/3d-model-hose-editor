@@ -13,7 +13,7 @@
                         {
                             "id": 1,
                             "value": "06",
-                            "modelURL": "/models/hoses/PROGold/SS/06.glb"
+                            "modelURL": "/models/hoses/PROGold/SS/06/06.glb"
                         },
                         {
                             "id": 2,
@@ -65,7 +65,7 @@
                         {
                             "id": 1,
                             "value": "06",
-                            "modelURL": ""
+                            "modelURL": "/models/hoses/PROGold/Polyester/06/06.glb"
                         },
                         {
                             "id": 2,
@@ -102,7 +102,7 @@
                         {
                             "id": 1,
                             "value": "06",
-                            "modelURL": ""
+                            "modelURL": "/models/hoses/PROGold/Aramid/06/06.glb"
                         },
                         {
                             "id": 2,
@@ -148,13 +148,13 @@
                 },
                 {
                     "id": 104,
-                    "name": "Black PVC Covered",
+                    "name": "High Temperature Polymer",
                     "image": "/data/braidType/div (5).svg",
                     "sizes": [
                         {
                             "id": 1,
                             "value": "06",
-                            "modelURL": ""
+                            "modelURL": "/models/hoses/PROGold/HTPB/06/06.glb"
                         },
                         {
                             "id": 2,
@@ -175,13 +175,13 @@
                 },
                 {
                     "id": 105,
-                    "name": "High Temp Polymer",
+                    "name": "Clear Convoluted",
                     "image": "/data/braidType/div (4).png",
                     "sizes": [
                         {
                             "id": 1,
                             "value": "06",
-                            "modelURL": ""
+                            "modelURL": "/models/hoses/PROGold/ClearConvoluted/06/06.glb"
                         },
                         {
                             "id": 2,
@@ -211,252 +211,6 @@
                         {
                             "id": 7,
                             "value": "24",
-                            "modelURL": ""
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "name": "Smooth Bore PTFE",
-            "image": "/data/hoseType/div.png",
-            "braids": [
-                {
-                    "id": 106,
-                    "name": "Stainless Steel",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "02",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "03",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 3,
-                            "value": "04",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 4,
-                            "value": "06",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 5,
-                            "value": "08",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 107,
-                    "name": "Stainless Steel w/Black PVC Sheath",
-                    "image": "/data/braidType/div (5).svg",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "02",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "03",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 3,
-                            "value": "04",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 108,
-                    "name": "Stainless Steel w/ Black TPE Sheath",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "06",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "08",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 109,
-                    "name": "Polyester",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "03",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "04",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 110,
-                    "name": "Kevlar",
-                    "image": "/data/braidType/div (3).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "02",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "03",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 3,
-                            "value": "04",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 111,
-                    "name": "Translucent tube",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "03",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "04",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 112,
-                    "name": "Impregnated Glass Fibre",
-                    "image": "/data/braidType/div (4).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "06",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 113,
-                    "name": "High pressure SB PTFE",
-                    "image": "/data/braidType/div (4).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "04",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "06",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 114,
-                    "name": "Convoluted PTFE Hose with Halar",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "SC071-26-0-06",
-                            "modelURL": ""
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "name": "ProBlackDR",
-            "image": "/data/hoseType/div (1).png",
-            "braids": [
-                {
-                    "id": 115,
-                    "name": "Polyester",
-                    "image": "/data/braidType/div (2).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "06",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "08",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 3,
-                            "value": "10",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 4,
-                            "value": "12",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 5,
-                            "value": "16",
-                            "modelURL": ""
-                        }
-                    ]
-                },
-                {
-                    "id": 116,
-                    "name": "Aramid",
-                    "image": "/data/braidType/div (3).png",
-                    "sizes": [
-                        {
-                            "id": 1,
-                            "value": "06",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 2,
-                            "value": "08",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 3,
-                            "value": "10",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 4,
-                            "value": "12",
-                            "modelURL": ""
-                        },
-                        {
-                            "id": 5,
-                            "value": "16",
                             "modelURL": ""
                         }
                     ]

@@ -1,6 +1,5 @@
-import { makeAutoObservable } from 'mobx';
-import { createContext, useContext } from 'react';
-import * as THREE from 'three';
+import { makeAutoObservable } from "mobx";
+import { createContext, useContext } from "react";
 
 class CameraManager {
   cameraRef: any = null;
@@ -9,12 +8,19 @@ class CameraManager {
   }
   setCameraRef(ref: any) {
     this.cameraRef = ref;
+    if (this.cameraRef) {
+      // Exact BMRS-FE initial camera values
+      this.cameraRef.minDistance = 0.05;
+      this.cameraRef.maxDistance = 1.5;
+      // Default look-at position from BMRS-FE CameraManager.focusCameraTo()
+      this.cameraRef.setLookAt(0, 0.25, 1.5, 0, 0, 0, false);
+    }
   }
 }
 
 class EnvManager {
-  envVisibility: boolean = true;
-  envRotation = new THREE.Vector3(0, 0, 0);
+  envVisibility: boolean = false;
+  envRotation = { x: 0, y: -Math.PI / 6, z: 1.5 };
   envIntensity: number = 1.0;
   environmentTexture: any = null;
   constructor() {
@@ -78,19 +84,19 @@ class DesignManager {
 
 class ConfiguratorStore {
   hoseData: any = null;
-  
+
   selectedSeriesId: number | null = null;
   selectedBraidId: number | null = null;
   selectedSizeId: number | null = null;
-  
+
   constructor() {
     makeAutoObservable(this);
     this.fetchHoseData();
   }
-  
+
   async fetchHoseData() {
     try {
-      const res = await fetch('/data/hose.json');
+      const res = await fetch("/data/hose.json");
       const data = await res.json();
       this.setHoseData(data);
     } catch (e) {
@@ -118,7 +124,9 @@ class ConfiguratorStore {
 
   setBraidId(id: number | null) {
     this.selectedBraidId = id;
-    const series = this.hoseData?.hoseSeries.find((s: any) => s.id === this.selectedSeriesId);
+    const series = this.hoseData?.hoseSeries.find(
+      (s: any) => s.id === this.selectedSeriesId,
+    );
     const braid = series?.braids?.find((b: any) => b.id === id);
     if (braid?.sizes?.length > 0) {
       this.setSizeId(braid.sizes[0].id);
@@ -132,12 +140,22 @@ class ConfiguratorStore {
   }
 
   get activeModelName() {
-    if (!this.hoseData || !this.selectedSeriesId || !this.selectedBraidId || !this.selectedSizeId) return "";
-    
-    const series = this.hoseData.hoseSeries.find((s: any) => s.id === this.selectedSeriesId);
-    const braid = series?.braids?.find((b: any) => b.id === this.selectedBraidId);
+    if (
+      !this.hoseData ||
+      !this.selectedSeriesId ||
+      !this.selectedBraidId ||
+      !this.selectedSizeId
+    )
+      return "";
+
+    const series = this.hoseData.hoseSeries.find(
+      (s: any) => s.id === this.selectedSeriesId,
+    );
+    const braid = series?.braids?.find(
+      (b: any) => b.id === this.selectedBraidId,
+    );
     const size = braid?.sizes?.find((s: any) => s.id === this.selectedSizeId);
-    
+
     if (series && braid && size) {
       return `${series.name} - ${braid.name} (${size.value})`;
     }
@@ -158,14 +176,20 @@ const store = new RootStore();
 const MainContext = createContext(store);
 
 // Auto-sync model URL to HosePipe3DManager
-import { autorun } from 'mobx';
+import { autorun } from "mobx";
 autorun(() => {
   const { configuratorStore, design3DManager } = store;
   if (configuratorStore.hoseData) {
-    const series = configuratorStore.hoseData.hoseSeries.find((s: any) => s.id === configuratorStore.selectedSeriesId);
-    const braid = series?.braids?.find((b: any) => b.id === configuratorStore.selectedBraidId);
-    const size = braid?.sizes?.find((s: any) => s.id === configuratorStore.selectedSizeId);
-    
+    const series = configuratorStore.hoseData.hoseSeries.find(
+      (s: any) => s.id === configuratorStore.selectedSeriesId,
+    );
+    const braid = series?.braids?.find(
+      (b: any) => b.id === configuratorStore.selectedBraidId,
+    );
+    const size = braid?.sizes?.find(
+      (s: any) => s.id === configuratorStore.selectedSizeId,
+    );
+
     if (size?.modelURL) {
       design3DManager.hosePipe3DManager.setCurrentModelUrl(size.modelURL);
     } else {
@@ -178,10 +202,8 @@ export const useMainContext = () => {
   return useContext(MainContext);
 };
 
-export const MainContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return (
-    <MainContext.Provider value={store}>
-      {children}
-    </MainContext.Provider>
-  );
+export const MainContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <MainContext.Provider value={store}>{children}</MainContext.Provider>;
 };

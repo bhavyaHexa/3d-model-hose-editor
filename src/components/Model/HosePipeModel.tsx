@@ -23,12 +23,12 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
         hosePipe3DManager.setBounds(res.minX, res.maxX);
       }
 
-      // Fit camera to the newly loaded model
+      // Fit camera to model using exact BMRS-FE pattern
       const cameraControls = cameraManager.cameraRef;
       if (cameraControls) {
-        const camRes = cameraBoundingBox(scene, { padding: 0.15 });
+        const camRes = cameraBoundingBox(scene);
         if (camRes) {
-          camRes.applyToCamera(cameraControls, true, true);
+          camRes.applyToCamera(cameraControls, true, false);
         }
       }
 

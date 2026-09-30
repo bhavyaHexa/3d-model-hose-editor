@@ -7,15 +7,8 @@ import { RGBELoader } from 'three-stdlib';
 import { useMainContext } from '../../../hooks/useMainContext';
 
 export const Env = observer(() => {
-  // Mocking the HDR load temporarily if the file is not there, or provide fallback
-  let defaultTexture = null;
-  try {
-    // Requires an actual HDR file in public/env/studio_small_09_2k.hdr
-    defaultTexture = useLoader(RGBELoader, '/env/studio_small_09_2k.hdr');
-  } catch (e) {
-    console.warn("Failed to load HDR texture.");
-  }
-  
+  // Load HDR environment map (Suspense handles the loading state)
+  const defaultTexture = useLoader(RGBELoader, '/env/studio_small_09_2k.hdr');
   const { design3DManager } = useMainContext();
   const { envManager } = design3DManager;
 

@@ -1,5 +1,5 @@
-import type { CameraControls } from '@react-three/drei';
-import * as THREE from 'three';
+import type { CameraControls } from "@react-three/drei";
+import * as THREE from "three";
 
 export interface CameraBoundingBoxOptions {
   boundaryPaddingFactor?: number;
@@ -95,20 +95,23 @@ export const cameraBoundingBox = (
 
     if (enableTransition) {
       setTimeout(() => {
-        if (typeof cameraControls.setBoundary === 'function') {
+        if (typeof cameraControls.setBoundary === "function") {
           cameraControls.setBoundary(boundaryBox);
         }
-        cameraControls.minDistance = fitDistance;
-        cameraControls.maxDistance =
-          fitDistance * (options?.maxDistanceFactor ?? 0.6);
+        const actualDistance = cameraControls.distance;
+        cameraControls.maxDistance = actualDistance;
+        cameraControls.minDistance = actualDistance * 0.85;
       }, 1100);
     } else {
-      if (typeof cameraControls.setBoundary === 'function') {
+      if (typeof cameraControls.setBoundary === "function") {
         cameraControls.setBoundary(boundaryBox);
       }
-      cameraControls.minDistance = fitDistance;
-      cameraControls.maxDistance =
-        fitDistance * (options?.maxDistanceFactor ?? 0.6);
+      // Wait for fitToBox to finish settling before reading the actual distance
+      setTimeout(() => {
+        const actualDistance = cameraControls.distance;
+        cameraControls.maxDistance = actualDistance;
+        cameraControls.minDistance = actualDistance * 0.85;
+      }, 150);
     }
   };
 
