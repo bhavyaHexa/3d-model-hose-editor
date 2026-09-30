@@ -26,7 +26,7 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
       const applyFraming = () => {
         const cameraControls = cameraManager.cameraRef;
         if (cameraControls) {
-          cameraHoseView(scene, cameraControls, 0.8);
+          cameraHoseView(scene, cameraControls, 0.6);
           invalidate();
           return true;
         }
