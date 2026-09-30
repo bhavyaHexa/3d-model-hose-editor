@@ -156,10 +156,35 @@ class ConfiguratorStore {
   }
 }
 
+class FeedbackManager {
+  approvedModels: Set<string> = new Set();
+  rejectedModels: Set<string> = new Set();
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  setInitialFeedbackState(approved: string[], rejected: string[]) {
+    this.approvedModels = new Set(approved);
+    this.rejectedModels = new Set(rejected);
+  }
+
+  approveModel(modelName: string) {
+    this.approvedModels.add(modelName);
+    this.rejectedModels.delete(modelName);
+  }
+
+  rejectModel(modelName: string) {
+    this.rejectedModels.add(modelName);
+    this.approvedModels.delete(modelName);
+  }
+}
+
 class RootStore {
   design3DManager = new Design3DManager();
   designManager = new DesignManager();
   configuratorStore = new ConfiguratorStore();
+  feedbackManager = new FeedbackManager();
   constructor() {
     makeAutoObservable(this);
   }

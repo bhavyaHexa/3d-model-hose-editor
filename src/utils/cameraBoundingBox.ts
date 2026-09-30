@@ -71,18 +71,6 @@ export const cameraBoundingBox = (
     fitCamera = true,
     enableTransition = true,
   ) => {
-    const camera = cameraControls.camera as THREE.PerspectiveCamera;
-    let fitDistance = maxDim * 1.5;
-
-    if (camera && camera.isPerspectiveCamera) {
-      const vFOV = THREE.MathUtils.degToRad(camera.fov);
-      const hFOV = 2 * Math.atan(Math.tan(vFOV / 2) * camera.aspect);
-
-      const distY = size.y / 2 / Math.tan(vFOV / 2);
-      const distX = size.x / 2 / Math.tan(hFOV / 2);
-
-      fitDistance = (Math.max(distX, distY) + size.z / 2) * (1 + padding);
-    }
 
     if (fitCamera) {
       cameraControls.fitToBox(box, enableTransition, {
