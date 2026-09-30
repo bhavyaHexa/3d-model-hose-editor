@@ -29,19 +29,17 @@ export const cameraHoseView = (
   const hFOV = 2 * Math.atan(Math.tan(vFOV / 2) * camera.aspect);
 
   // 3. Compute distance so hose X-extent fills `screenFillRatio` of screen width
-  //    d = (halfWidth) / (tan(hFOV/2) * fillRatio)
   const halfHoseWidth = size.x / 2;
   const d = halfHoseWidth / (Math.tan(hFOV / 2) * screenFillRatio);
 
   // 4. Clamp to reasonable limits
   const finalDistance = Math.max(d, 0.05);
 
-  // 5. Lock zoom BEFORE setLookAt so limits are enforced immediately
-  //    At 0.9x distance the hose still fits within the screen horizontally
-  cameraControls.maxDistance = finalDistance;
-  cameraControls.minDistance = finalDistance * 0.9;
+  // 5. Expand maxDistance first so setLookAt is not clamped to an old value
+  cameraControls.maxDistance = Math.max(finalDistance * 2, 2.0);
+  cameraControls.minDistance = 0.01;
 
-  // 6. Position camera along +Z from hose center looking at center
+  // 6. Set lookAt immediately without transition
   cameraControls.setLookAt(
     center.x,
     center.y,
@@ -49,10 +47,15 @@ export const cameraHoseView = (
     center.x,
     center.y,
     center.z,
-    false, // no transition — instant snap
+    false, // instant snap
   );
 
-  // 7. Re-apply limits after setLookAt to override any internal reset
-  cameraControls.maxDistance = finalDistance;
-  cameraControls.minDistance = finalDistance * 0.9;
+  // 7. Enforce distance bounds around the framed distance
+  cameraControls.maxDistance = finalDistance * 1.15;
+  cameraControls.minDistance = finalDistance * 0.85;
+
+  // 8. Force camera-controls internal state to update immediately
+  if (typeof (cameraControls as any).update === "function") {
+    (cameraControls as any).update(0);
+  }
 };

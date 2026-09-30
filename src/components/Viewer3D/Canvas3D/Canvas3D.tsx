@@ -18,7 +18,7 @@ export const Canvas3D: React.FC<{ children?: React.ReactNode }> = observer(
           far: 1000,
           fov: 45,
           near: 0.01,
-          position: [0, 0.25, 1.5],
+          position: [0, 0, 0.35],
         }}
         gl={{
           toneMapping: THREE.ACESFilmicToneMapping,

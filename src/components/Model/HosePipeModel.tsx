@@ -14,7 +14,7 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
 
   const { design3DManager } = useMainContext();
   const { hosePipe3DManager, cameraManager } = design3DManager;
-  const { gl } = useThree();
+  const { gl, invalidate } = useThree();
 
   useEffect(() => {
     if (scene) {
@@ -23,10 +23,21 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
         hosePipe3DManager.setBounds(res.minX, res.maxX);
       }
 
-      // Normalize camera view: hose always fills 80% of screen width
-      const cameraControls = cameraManager.cameraRef;
-      if (cameraControls) {
-        cameraHoseView(scene, cameraControls, 0.8);
+      const applyFraming = () => {
+        const cameraControls = cameraManager.cameraRef;
+        if (cameraControls) {
+          cameraHoseView(scene, cameraControls, 0.8);
+          invalidate();
+          return true;
+        }
+        return false;
+      };
+
+      if (!applyFraming()) {
+        const timer = setTimeout(applyFraming, 50);
+        return () => clearTimeout(timer);
+      } else {
+        requestAnimationFrame(applyFraming);
       }
 
       scene.traverse((child) => {
@@ -47,8 +58,9 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
           });
         }
       });
+      invalidate();
     }
-  }, [scene, hosePipe3DManager, gl]);
+  }, [scene, hosePipe3DManager, cameraManager.cameraRef, gl, invalidate]);
 
   return (
     <group

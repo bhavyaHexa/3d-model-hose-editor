@@ -19,10 +19,10 @@ const LoaderFallback = () => (
 export const Viewer3D = observer(() => {
   return (
     <Canvas3D>
+      <Camera />
+      <Light />
+      <Env />
       <Suspense fallback={<LoaderFallback />}>
-        <Camera />
-        <Light />
-        <Env />
         <HosePipeModel />
       </Suspense>
     </Canvas3D>

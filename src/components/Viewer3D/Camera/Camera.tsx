@@ -16,9 +16,9 @@ export const Camera = observer(() => {
     <CameraControls
       makeDefault
       dollySpeed={0.8}
-      smoothTime={1.0}
-      minDistance={0.05}
-      maxDistance={0.3}
+      smoothTime={0.25}
+      minDistance={0.01}
+      maxDistance={2.0}
       minAzimuthAngle={minAzimuth}
       maxAzimuthAngle={maxAzimuth}
       minPolarAngle={Math.PI / 4}
