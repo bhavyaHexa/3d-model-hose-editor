@@ -181,15 +181,8 @@ body {
   height: 100%;
 }
 
-.bg-blueprint-grid {
-  background-color: #f4f6f8;
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+.bg-gradient {
+  background: radial-gradient(circle at center, #eaecf0 0%, #8c96a3 100%);
 }
 
 /* Floating Title */

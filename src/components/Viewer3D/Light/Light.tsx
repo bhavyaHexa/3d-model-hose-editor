@@ -1,9 +1,10 @@
-import { observer } from 'mobx-react-lite';
+import { observer } from "mobx-react-lite";
+import { Env } from "../Env/Env";
 
 export const Light = observer(() => {
   return (
     <>
-      <ambientLight intensity={1.01} />
+      <Env />
     </>
   );
 });

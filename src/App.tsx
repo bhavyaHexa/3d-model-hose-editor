@@ -12,7 +12,7 @@ function App() {
         <Header />
         <div className="body-container">
           <Sidebar />
-          <div className="main-area bg-blueprint-grid">
+          <div className="main-area bg-gradient">
             <Viewer3D />
             <div className="feedback-buttons-container">
               <FeedbackButtons />
