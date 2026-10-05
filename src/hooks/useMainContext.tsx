@@ -24,6 +24,7 @@ class EnvManager {
 class HosePipe3DManager {
   minX: number = 0;
   maxX: number = 0;
+  shadowProps: { position: [number, number, number]; scale: number; far: number } | null = null;
   groupRef: any = null;
   currentModelUrl: string | null = null;
   constructor() {
@@ -32,6 +33,9 @@ class HosePipe3DManager {
   setBounds(minX: number, maxX: number) {
     this.minX = minX;
     this.maxX = maxX;
+  }
+  setShadowProps(props: { position: [number, number, number]; scale: number; far: number } | null) {
+    this.shadowProps = props;
   }
   setGroupRef(ref: any) {
     this.groupRef = ref;

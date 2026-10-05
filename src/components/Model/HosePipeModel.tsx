@@ -1,4 +1,4 @@
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, ContactShadows } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { observer } from 'mobx-react-lite';
 import React, { Suspense, useEffect } from 'react';
@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { useMainContext } from "../../hooks/useMainContext";
 import { hosePipeBoundingBox } from "../../utils/hosePipeBoundingBox";
 import { cameraHoseView } from "../../utils/cameraHoseView";
+import { getShadowProps } from "../../utils/getShadowProps";
 
 const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
   const gltf = useGLTF(url);
@@ -15,6 +16,7 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
   const { design3DManager } = useMainContext();
   const { hosePipe3DManager, cameraManager } = design3DManager;
   const { gl, invalidate } = useThree();
+  const shadowProps = hosePipe3DManager.shadowProps;
 
   useEffect(() => {
     if (scene) {
@@ -22,6 +24,9 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
       if (res) {
         hosePipe3DManager.setBounds(res.minX, res.maxX);
       }
+      
+      const props = getShadowProps(scene);
+      hosePipe3DManager.setShadowProps(props);
 
       const applyFraming = () => {
         const cameraControls = cameraManager.cameraRef;
@@ -70,6 +75,17 @@ const ModelLoader: React.FC<{ url: string }> = observer(({ url }) => {
         }
       }}>
       <primitive object={scene} />
+      {shadowProps && (
+        <ContactShadows
+          position={shadowProps.position}
+          opacity={0.65}
+          scale={shadowProps.scale}
+          blur={2}
+          far={shadowProps.far}
+          resolution={512}
+          color="#000000"
+        />
+      )}
     </group>
   );
 });
